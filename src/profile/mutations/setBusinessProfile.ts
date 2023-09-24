@@ -1,13 +1,14 @@
 import { resolver } from "@blitzjs/rpc"
-import { StartSession } from "../../auth/validations"
+import { SendMessage, SetBusinessProfile } from "../../auth/validations"
 import { Ctx } from "blitz"
-import db from "db"
-
-type Response = { session_id: string }
+import db from "../../../db"
 
 export default resolver.pipe(
-  resolver.zod(StartSession),
-  async ({ sessionType }, ctx: Ctx): Promise<Response> => {
+  resolver.zod(SetBusinessProfile),
+  async (
+    { founderName, founderProfile, businessName, businessProfile, businessWebsite },
+    ctx: Ctx
+  ) => {
     const { userId } = ctx.session
 
     if (!userId) {
@@ -30,7 +31,8 @@ export default resolver.pipe(
     if (!user) {
       throw new Error("No user")
     }
-    const backendUrl = process.env.API_URL + "/api/cofounder/start_daily/"
+
+    const backendUrl = process.env.API_URL + "/api/cofounder/set_profile/"
 
     const results = await fetch(backendUrl, {
       method: "POST",
@@ -39,8 +41,12 @@ export default resolver.pipe(
         Authorization: `Api-Key ${process.env.API_KEY}`,
       },
       body: JSON.stringify({
+        founder_name: founderName,
+        founder_profile: founderProfile,
+        business_name: businessName,
+        business_profile: businessProfile,
+        business_website: businessWebsite,
         user_id: user.userId,
-        chat_type: sessionType,
       }),
     })
     return results.json()

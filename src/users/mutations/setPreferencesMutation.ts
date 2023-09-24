@@ -27,7 +27,7 @@ export default resolver.pipe(resolver.zod(SetPreferences), async ({ preferences 
     throw new Error("No user")
   }
 
-  const backendUrl = process.env.API_URL + "/api/coach/preferences/"
+  const backendUrl = process.env.API_URL + "/api/cofounder/preferences/"
 
   const results = await fetch(backendUrl, {
     method: "POST",

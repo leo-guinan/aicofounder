@@ -9,7 +9,7 @@ export default async function getPreferences(_ = null, { session }: Ctx) {
   if (!user) {
     throw new Error("No user")
   }
-  const backendUrl = process.env.API_URL + "/api/coach/preferences/" + user.userId + "/"
+  const backendUrl = process.env.API_URL + "/api/cofounder/preferences/" + user.userId + "/"
 
   const response = await fetch(backendUrl, {
     method: "GET",

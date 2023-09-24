@@ -18,8 +18,8 @@ const Default = () => {
         <>
           {/*login or signup buttons*/}
           <div className="flex flex-col items-center justify-center h-full">
-            <h1 className="text-4xl font-bold">Build In Public Coach</h1>
-            <p className="text-xl">Login or Signup to start chatting</p>
+            <h1 className="text-4xl font-bold">My AI Co-founder</h1>
+            <p className="text-xl">Login or Signup to chat with your co-founder!</p>
             <div className="flex gap-4 mt-4">
               <a
                 href="/login"

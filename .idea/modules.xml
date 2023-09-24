@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/talk_homey.iml" filepath="$PROJECT_DIR$/.idea/talk_homey.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/aicofounder.iml" filepath="$PROJECT_DIR$/.idea/aicofounder.iml" />
     </modules>
   </component>
 </project>

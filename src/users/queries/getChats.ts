@@ -11,7 +11,7 @@ export default async function getChats(_ = null, { session }: Ctx) {
     throw new Error("No user")
   }
 
-  const backendUrl = process.env.API_URL + "/api/coach/chats/"
+  const backendUrl = process.env.API_URL + "/api/cofounder/chats/"
   console.log(backendUrl)
 
   const response = await fetch(backendUrl, {

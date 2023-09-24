@@ -5,6 +5,7 @@ import Header from "../components/Header"
 import { Dialog, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import {
+  BriefcaseIcon,
   Cog6ToothIcon,
   ChatBubbleLeftRightIcon,
   CurrencyDollarIcon,
@@ -31,28 +32,25 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
       icon: CurrencyDollarIcon,
       current: false,
     },
-  ]
-  const chats = [
     {
-      name: "Previous Chat 1",
-      href: "#",
-      bgColorClass: "bg-indigo-500",
-      icon: Cog6ToothIcon,
-      current: true,
-      initial: "E",
+      name: "Business Profile",
+      href: "/profile",
+      icon: BriefcaseIcon,
+      current: false,
     },
   ]
+
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <>
       <Head>
-        <title>{title || "BuildInPublic.coach"}</title>
+        <title>{title || "My AI Co-founder"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Suspense fallback="Loading...">
-        <div className="bg-gray-800 h-screen">
+        <div className="bg-gray-800 h-full">
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
               <Transition.Child

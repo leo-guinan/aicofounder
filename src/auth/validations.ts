@@ -16,17 +16,11 @@ export const fullName = z
   .min(3)
   .max(100)
   .transform((str) => str.trim())
-export const preferredName = z
-  .string()
-  .min(3)
-  .max(100)
-  .transform((str) => str.trim())
 
 export const Signup = z.object({
   email,
   password,
   fullName,
-  preferredName,
 })
 
 export const Login = z.object({
@@ -111,4 +105,12 @@ export const SetPreferences = z.object({
   preferences: z.object({
     daily_checkin: z.boolean(),
   }),
+})
+
+export const SetBusinessProfile = z.object({
+  founderName: z.string(),
+  founderProfile: z.string(),
+  businessName: z.string(),
+  businessProfile: z.string(),
+  businessWebsite: z.string(),
 })
