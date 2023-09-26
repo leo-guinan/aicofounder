@@ -20,15 +20,18 @@ const Chat = ({
   const currentUser = useCurrentUser()
   const [message, setMessage] = useState("")
 
-  const [chatHistory] = useQuery(getChat, {
-    session_id: sessionId,
-  })
+  const [chatHistory, { setQueryData }] = useQuery(
+    getChat,
+    {
+      session_id: sessionId,
+    },
+    { refetchOnWindowFocus: false }
+  )
 
   // const [sendMessageMutation] = useMutation(sendMessage)
 
   useEffect(() => {
     if (!chatHistory) return
-    console.log(chatHistory)
     setChat(chatHistory)
   }, [chatHistory])
 
@@ -64,20 +67,15 @@ const Chat = ({
           <div className="flex flex-col w-full min-h-screen h-full p-5 justify-between">
             <div className="flex flex-col justify-end">
               {chat.map(({ message, id, source }) => (
-                <>
+                <div key={id}>
                   {source === "human" ? (
-                    <div key={id} className="my-3 bg-gray-300 rounded p-3 text-sm w-3/4">
-                      {message}
-                    </div>
+                    <div className="my-3 bg-gray-300 rounded p-3 text-sm w-3/4">{message}</div>
                   ) : (
-                    <div
-                      key={id}
-                      className="my-3 bg-gray-700 rounded p-3 text-sm text-white  flex-row-reverse w-3/4"
-                    >
+                    <div className="my-3 bg-gray-700 rounded p-3 text-sm text-white  flex-row-reverse w-3/4">
                       <ReactMarkdown>{message}</ReactMarkdown>
                     </div>
                   )}
-                </>
+                </div>
               ))}
             </div>
 

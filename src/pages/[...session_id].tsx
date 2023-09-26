@@ -61,16 +61,13 @@ const ChatSession: BlitzPage = () => {
       }
 
       client.current.onmessage = (message: MessageEvent) => {
-        console.log("message", message)
         const data = JSON.parse(message.data)
         setNewMessage({ message: data.message, source: "bot", id: data.id })
       }
 
       client.current.onclose = (event: CloseEvent) => {
-        console.log(`WebSocket closed with code ${event.code}`)
         setChat([])
         setTimeout(() => {
-          console.log("Reconnecting...")
           connectSocket()
         }, 5000) // retries after 5 seconds.
       }

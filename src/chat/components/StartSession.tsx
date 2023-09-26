@@ -3,20 +3,17 @@ import { useMutation } from "@blitzjs/rpc"
 import startChatSession from "../mutations/startChatSession"
 import { useEffect, useState } from "react"
 
-const StartSession = ({ chatType }: { chatType: "daily_great" | "daily_bad" | "daily_ok" }) => {
+const StartSession = () => {
   const router = useRouter()
   const [startChatSessionMutation] = useMutation(startChatSession)
   const [sessionId, setSessionId] = useState("")
 
   const createSession = async () => {
     try {
-      const response = await startChatSessionMutation({
-        sessionType: chatType,
-      })
+      const response = await startChatSessionMutation({})
       const sessionId = response.session_id
       setSessionId(sessionId)
     } catch (error) {
-      console.log(error)
       setSessionId("error")
     }
   }

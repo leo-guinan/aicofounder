@@ -1,17 +1,10 @@
 import Head from "next/head"
 import React, { Fragment, Suspense, useState } from "react"
-import { BlitzLayout, Routes } from "@blitzjs/next"
-import Header from "../components/Header"
+import { BlitzLayout } from "@blitzjs/next"
 import { Dialog, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
-import {
-  BriefcaseIcon,
-  Cog6ToothIcon,
-  ChatBubbleLeftRightIcon,
-  CurrencyDollarIcon,
-} from "@heroicons/react/20/solid"
+import { BriefcaseIcon, ChatBubbleLeftRightIcon, Cog6ToothIcon } from "@heroicons/react/20/solid"
 import { classNames } from "../../../utils"
-import { v4 as uuidv4 } from "uuid"
 import Chats from "../components/Chats"
 import ChatsMobile from "../components/ChatsMobile"
 
@@ -22,16 +15,16 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
   const navigation = [
     {
       name: "New Chat",
-      href: `/${uuidv4()}`,
+      href: `/new`,
       icon: ChatBubbleLeftRightIcon,
       current: true,
     },
-    {
-      name: "Upgrade Account",
-      href: "/prices",
-      icon: CurrencyDollarIcon,
-      current: false,
-    },
+    // {
+    //   name: "Upgrade Account",
+    //   href: "/prices",
+    //   icon: CurrencyDollarIcon,
+    //   current: false,
+    // },
     {
       name: "Business Profile",
       href: "/profile",

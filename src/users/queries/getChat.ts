@@ -19,7 +19,6 @@ export default async function getChat(
   }
 
   const backendUrl = process.env.API_URL + "/api/cofounder/chat/"
-  console.log(backendUrl)
 
   const response = await fetch(`${backendUrl}`, {
     method: "POST",
