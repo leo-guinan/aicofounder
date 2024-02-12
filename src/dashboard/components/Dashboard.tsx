@@ -99,13 +99,13 @@ const Dashboard = () => {
         {/* Task List - Top */}
         <div className="flex-1 bg-blue-200 p-4 overflow-y-auto">
           <h2 className="text-lg font-semibold">Task List</h2>
-          {/*<TaskList tasks={tasks} />*/}
+          <TaskList tasks={tasks} />
         </div>
 
         {/* Chat Assistant - Bottom */}
         <div className="flex-1 bg-green-200 p-4 overflow-y-auto">
           <h2 className="text-lg font-semibold">Chat Assistant</h2>
-          {/*<ChatAssistant messages={answers} />*/}
+          <ChatAssistant messages={answers} />
         </div>
       </div>
     </div>
