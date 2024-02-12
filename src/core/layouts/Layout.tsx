@@ -25,12 +25,12 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
     //   icon: CurrencyDollarIcon,
     //   current: false,
     // },
-    {
-      name: "Business Profile",
-      href: "/profile",
-      icon: BriefcaseIcon,
-      current: false,
-    },
+    // {
+    //   name: "Business Profile",
+    //   href: "/profile",
+    //   icon: BriefcaseIcon,
+    //   current: false,
+    // },
   ]
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
