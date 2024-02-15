@@ -110,3 +110,7 @@ export const SetBusinessProfile = z.object({
   businessProfile: z.string(),
   businessWebsite: z.string(),
 })
+
+export const CompleteTask = z.object({
+  taskId: z.number(),
+})

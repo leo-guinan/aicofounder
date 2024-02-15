@@ -8,6 +8,7 @@ import getTasks from "../queries/getTasks"
 import { w3cwebsocket as W3CWebSocket } from "websocket"
 import { useRouter } from "next/router"
 import updateChatSession from "../../chat/mutations/updateChatSession"
+import completeTask from "../mutations/completeTask"
 import { v4 as uuidv4 } from "uuid"
 
 const Dashboard = () => {
@@ -25,6 +26,7 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState<Task[]>(oldTasks)
 
   const [updateChatSessionMutation] = useMutation(updateChatSession)
+  const [completeTaskMutation] = useMutation(completeTask)
 
   useEffect(() => {
     console.log("oldTasks", oldTasks)
@@ -86,6 +88,11 @@ const Dashboard = () => {
     connectSocket()
   }, [router, sessionId])
 
+  const completeTaskHandler = async (taskId: number) => {
+    console.log("complete task handler")
+    await completeTaskMutation({ taskId })
+  }
+
   return (
     <div className="flex h-screen">
       {/* Chat Frame - Left Half */}
@@ -99,7 +106,7 @@ const Dashboard = () => {
         {/* Task List - Top */}
         <div className="flex-1 bg-blue-200 p-4 overflow-y-auto">
           <h2 className="text-lg font-semibold">Task List</h2>
-          <TaskList tasks={tasks} />
+          <TaskList tasks={tasks} setCurrentTasks={setTasks} completeTask={completeTaskHandler} />
         </div>
 
         {/* Chat Assistant - Bottom */}
