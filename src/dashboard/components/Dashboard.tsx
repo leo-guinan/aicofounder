@@ -29,16 +29,6 @@ const Dashboard = () => {
   const [completeTaskMutation] = useMutation(completeTask)
 
   useEffect(() => {
-    console.log("oldTasks", oldTasks)
-    console.log("tasks", tasks)
-  }, [tasks, oldTasks])
-
-  useEffect(() => {
-    console.log("oldAnswers", oldAnswers)
-    console.log("answers", answers)
-  }, [answers, oldAnswers])
-
-  useEffect(() => {
     if (!router.isReady) return
     void updateChatSessionMutation({ sessionId })
 
@@ -54,7 +44,6 @@ const Dashboard = () => {
 
       client.current.onmessage = (message: MessageEvent) => {
         const data = JSON.parse(message.data)
-        console.log(data)
         if (data.id === "answer") {
           setAnswers([
             ...answers,
@@ -65,9 +54,11 @@ const Dashboard = () => {
           ])
         } else if (data.id === "task") {
           const parsedMessage = JSON.parse(data.message)
-
-          console.log(parsedMessage)
-          setTasks([...tasks, ...parsedMessage])
+          console.log("Tasks", tasks)
+          console.log("ParsedMessage", parsedMessage)
+          const combined = [...tasks, ...parsedMessage]
+          console.log("combined", combined)
+          setTasks(combined)
         } else {
           console.log(data.message)
         }
@@ -89,7 +80,6 @@ const Dashboard = () => {
   }, [router, sessionId])
 
   const completeTaskHandler = async (taskId: number) => {
-    console.log("complete task handler")
     await completeTaskMutation({ taskId })
   }
 

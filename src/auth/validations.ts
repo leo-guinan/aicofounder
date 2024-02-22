@@ -114,3 +114,15 @@ export const SetBusinessProfile = z.object({
 export const CompleteTask = z.object({
   taskId: z.number(),
 })
+
+export const MakeBid = z.object({
+  taskId: z.number(),
+  bidAmount: z.number(),
+  requestedInfo: z.string(),
+  email: z.string(),
+})
+
+export const UpdateScope = z.object({
+  taskId: z.number(),
+  scope: z.enum(["Private", "Public"]),
+})
